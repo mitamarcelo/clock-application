@@ -1,0 +1,23 @@
+@import './variables.scss';
+
+.segment {
+    background-color: $gray-segment;
+}
+
+.horizontalRow {
+    display: flex;
+    justify-content: center;
+}
+
+.verticalRow {
+    display: flex;
+    justify-content: space-between;
+}
+
+.display {
+    background-color: $display-background;
+}
+
+.active {
+    background-color: $active-segment;
+}
