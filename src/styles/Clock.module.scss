@@ -1,0 +1,36 @@
+@import "./variables";
+
+.clock {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  .clockRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    .groupOfDisplays {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+  .divisor {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: $display-background;
+    width: 20px;
+    padding: 10px;
+
+    &.pointBottom {
+      justify-content: flex-end;
+    }
+
+    .point {
+      background-color: $active-segment;
+      width: 10px;
+      height: 10px;
+      border-radius: 5px;
+    }
+  }
+}
