@@ -2,7 +2,8 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.scss";
 import SevenSegment from "@/components/SevenSegment";
-import Clock from "@/components/Clock";
+import Link from "next/link";
+import Header from "@/components/Header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,6 +17,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
+        <Header />
         <h1>Welcome to the seven segments experiment!</h1>
         <div style={{ display: "flex" }}>
           <SevenSegment width={80} number={0} />
@@ -29,8 +31,6 @@ export default function Home() {
           <SevenSegment width={80} number={8} />
           <SevenSegment width={80} number={9} />
         </div>
-        <h2>Time of Access: </h2>
-        <Clock date={new Date()} />
         <h2>
           This project is a simple experiment to get clock functionalities using
           a seven segments design.

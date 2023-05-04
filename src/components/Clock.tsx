@@ -8,7 +8,7 @@ import { calculateTimeFromSeconds } from "@/utils/Clock.utils";
 import classNames from "classnames";
 
 const Clock: FC<ClockProps> = ({ date, seconds, time }) => {
-  const isDate = moment(date).isValid();
+  const isDate = date && moment(date).isValid();
   const momentDateTime = isDate ? moment(date) : null;
   let numbersToDisplay: IDateTime = {};
 
@@ -25,121 +25,127 @@ const Clock: FC<ClockProps> = ({ date, seconds, time }) => {
     };
   } else {
     numbersToDisplay = (
-      seconds ? calculateTimeFromSeconds(seconds) : time
+      seconds !== undefined ? calculateTimeFromSeconds(seconds) : time
     ) as IDateTime;
   }
 
   return (
-    <div className={styles.clock}>
-      {isDate && (
+    numbersToDisplay && (
+      <div className={styles.clock}>
+        {isDate && (
+          <div className={styles.clockRow}>
+            <div className={styles.groupOfDisplays}>
+              <SevenSegment
+                number={
+                  numbersToDisplay.day
+                    ? Math.trunc(numbersToDisplay.day / 10)
+                    : 0
+                }
+              />
+              <SevenSegment
+                number={numbersToDisplay.day ? numbersToDisplay.day % 10 : 0}
+              />
+            </div>
+            <div className={classNames(styles.divisor, styles.pointBottom)}>
+              <div className={styles.point} />
+            </div>
+            <div className={styles.groupOfDisplays}>
+              <SevenSegment
+                number={
+                  numbersToDisplay.month
+                    ? Math.trunc(numbersToDisplay.month / 10)
+                    : 0
+                }
+              />
+              <SevenSegment
+                number={
+                  numbersToDisplay.month ? numbersToDisplay.month % 10 : 0
+                }
+              />
+            </div>
+            <div className={classNames(styles.divisor, styles.pointBottom)}>
+              <div className={styles.point} />
+            </div>
+            <div className={styles.groupOfDisplays}>
+              <SevenSegment
+                number={
+                  numbersToDisplay.year
+                    ? Math.trunc(numbersToDisplay.year / 1000)
+                    : 0
+                }
+              />
+              <SevenSegment
+                number={
+                  numbersToDisplay.year
+                    ? Math.trunc((numbersToDisplay.year % 1000) / 100)
+                    : 0
+                }
+              />
+              <SevenSegment
+                number={
+                  numbersToDisplay.year
+                    ? Math.trunc((numbersToDisplay.year % 100) / 10)
+                    : 0
+                }
+              />
+              <SevenSegment
+                number={numbersToDisplay.year ? numbersToDisplay.year % 10 : 0}
+              />
+            </div>
+          </div>
+        )}
         <div className={styles.clockRow}>
           <div className={styles.groupOfDisplays}>
             <SevenSegment
               number={
-                numbersToDisplay.day ? Math.trunc(numbersToDisplay.day / 10) : 0
+                numbersToDisplay.hours
+                  ? Math.trunc(numbersToDisplay.hours / 10)
+                  : 0
               }
             />
             <SevenSegment
-              number={numbersToDisplay.day ? numbersToDisplay.day % 10 : 0}
+              number={numbersToDisplay.hours ? numbersToDisplay.hours % 10 : 0}
             />
           </div>
-          <div className={classNames(styles.divisor, styles.pointBottom)}>
+          <div className={styles.divisor}>
+            <div className={styles.point} />
             <div className={styles.point} />
           </div>
           <div className={styles.groupOfDisplays}>
             <SevenSegment
               number={
-                numbersToDisplay.month
-                  ? Math.trunc(numbersToDisplay.month / 10)
+                numbersToDisplay.minutes
+                  ? Math.trunc(numbersToDisplay.minutes / 10)
                   : 0
               }
             />
             <SevenSegment
-              number={numbersToDisplay.month ? numbersToDisplay.month % 10 : 0}
+              number={
+                numbersToDisplay.minutes ? numbersToDisplay.minutes % 10 : 0
+              }
             />
           </div>
-          <div className={classNames(styles.divisor, styles.pointBottom)}>
+          <div className={styles.divisor}>
+            <div className={styles.point} />
             <div className={styles.point} />
           </div>
           <div className={styles.groupOfDisplays}>
             <SevenSegment
               number={
-                numbersToDisplay.year
-                  ? Math.trunc(numbersToDisplay.year / 1000)
+                numbersToDisplay.seconds
+                  ? Math.trunc(numbersToDisplay.seconds / 10)
                   : 0
               }
             />
             <SevenSegment
               number={
-                numbersToDisplay.year
-                  ? Math.trunc((numbersToDisplay.year % 1000) / 100)
-                  : 0
+                numbersToDisplay.seconds ? numbersToDisplay.seconds % 10 : 0
               }
-            />
-            <SevenSegment
-              number={
-                numbersToDisplay.year
-                  ? Math.trunc((numbersToDisplay.year % 100) / 10)
-                  : 0
-              }
-            />
-            <SevenSegment
-              number={numbersToDisplay.year ? numbersToDisplay.year % 10 : 0}
             />
           </div>
-        </div>
-      )}
-      <div className={styles.clockRow}>
-        <div className={styles.groupOfDisplays}>
-          <SevenSegment
-            number={
-              numbersToDisplay.hours
-                ? Math.trunc(numbersToDisplay.hours / 10)
-                : 0
-            }
-          />
-          <SevenSegment
-            number={numbersToDisplay.hours ? numbersToDisplay.hours % 10 : 0}
-          />
-        </div>
-        <div className={styles.divisor}>
-          <div className={styles.point} />
-          <div className={styles.point} />
-        </div>
-        <div className={styles.groupOfDisplays}>
-          <SevenSegment
-            number={
-              numbersToDisplay.minutes
-                ? Math.trunc(numbersToDisplay.minutes / 10)
-                : 0
-            }
-          />
-          <SevenSegment
-            number={
-              numbersToDisplay.minutes ? numbersToDisplay.minutes % 10 : 0
-            }
-          />
-        </div>
-        <div className={styles.divisor}>
-          <div className={styles.point} />
-          <div className={styles.point} />
-        </div>
-        <div className={styles.groupOfDisplays}>
-          <SevenSegment
-            number={
-              numbersToDisplay.seconds
-                ? Math.trunc(numbersToDisplay.seconds / 10)
-                : 0
-            }
-          />
-          <SevenSegment
-            number={
-              numbersToDisplay.seconds ? numbersToDisplay.seconds % 10 : 0
-            }
-          />
         </div>
       </div>
-    </div>
+    )
   );
 };
 
