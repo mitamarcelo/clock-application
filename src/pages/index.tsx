@@ -20,15 +20,15 @@ export default function Home() {
         <Header />
         <h1>Welcome to the seven segments experiment!</h1>
         <div style={{ display: "flex" }}>
-          <SevenSegment width={80} number={0} />
+          <SevenSegment width={80} number={0} blink />
           <SevenSegment width={80} number={1} />
-          <SevenSegment width={80} number={2} />
+          <SevenSegment width={80} number={2} blink />
           <SevenSegment width={80} number={3} />
-          <SevenSegment width={80} number={4} />
+          <SevenSegment width={80} number={4} blink />
           <SevenSegment width={80} number={5} />
-          <SevenSegment width={80} number={6} />
+          <SevenSegment width={80} number={6} blink />
           <SevenSegment width={80} number={7} />
-          <SevenSegment width={80} number={8} />
+          <SevenSegment width={80} number={8} blink />
           <SevenSegment width={80} number={9} />
         </div>
         <h2>

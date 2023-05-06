@@ -14,7 +14,7 @@ export default function StopWatch() {
 
   const resetSeconds = () => {
     setRunning(false);
-    setSeconds(0);
+    setSeconds(23 * 60 * 60 + 59 * 60 + 55);
   };
 
   const toggleRunning = () => {

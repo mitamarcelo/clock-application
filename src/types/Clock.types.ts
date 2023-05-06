@@ -1,7 +1,14 @@
+export enum ClockNumbers {
+  Seconds = "seconds",
+  Minutes = "minutes",
+  Hours = "hours",
+  Days = "days",
+}
 export interface ITime {
   hours?: number;
   minutes?: number;
   seconds?: number;
+  days?: number;
 }
 
 export interface IDateTime extends ITime {
@@ -13,19 +20,16 @@ export interface IDateTime extends ITime {
 interface ClockWithDate {
   date: Date;
   seconds?: never;
-  time?: never;
 }
 
 interface ClockWithSeconds {
   date?: never;
   seconds: number;
-  time?: never;
 }
 
 interface ClockWithTime {
   date?: never;
   seconds?: never;
-  time: ITime;
 }
 
-export type ClockProps = ClockWithDate | ClockWithSeconds | ClockWithTime;
+export type ClockProps = ClockWithDate | ClockWithSeconds;

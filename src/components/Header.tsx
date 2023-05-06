@@ -37,6 +37,16 @@ const Header = () => {
           Go to Stopwatch
         </span>
       </Link>
+
+      <Link href="/countdown-timer">
+        <span
+          className={classNames(styles.link, {
+            [styles.activeLink]: router.pathname === "/countdown-timer",
+          })}
+        >
+          Go to Countdown
+        </span>
+      </Link>
     </div>
   );
 };
